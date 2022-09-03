@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Shopping List</string>
+    <string name="add_item">Add First List</string>
+    <string name="enter_item">Create List</string>
+    <string name="hint_item">Enter Name</string>
+    <string name="category">Enter Category</string>
+    <string name="save_button">Save</string>
+
+    <string name="shoppingList_name">Shopping List Name</string>
+    <string name="shoppingList_cty">Category</string>
+    <string name="data_added">Date Added</string>
+    <string name="action_settings">Settings</string>
+</resources>
