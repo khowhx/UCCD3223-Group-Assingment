@@ -89,7 +89,7 @@ public class SQLiteAdapter
         }
         return result;
     }
-    public List<String> readAll() {
+    public List<String> readItemName() {
         List<String> records = new ArrayList<String>();
         String[] columns = new String[] { KEY_CONTENT };
         Cursor cursor = sqLiteDatabase.query(MYDATABASE_TABLE, columns,
