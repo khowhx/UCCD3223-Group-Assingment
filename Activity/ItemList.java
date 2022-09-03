@@ -45,7 +45,7 @@ public class ItemList extends AppCompatActivity {
 
 
         sql.openToRead();
-        List<String> contentRead = sql.readAll();
+        List<String> contentRead = sql.readItemName();
         List<String> checkedStatus = sql.readCheckedStatus();
         List<String> id = sql.readID();
 
