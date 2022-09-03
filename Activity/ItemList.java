@@ -33,10 +33,10 @@ public class ItemList extends AppCompatActivity {
         sql = new SQLiteAdapter(this);
         sql.openToWrite();
 ////        sql.deleteAll();
-//        sql.insert("Item A","UnChecked", "2", "-","-", "1");
-//        sql.insert("Item B","UnChecked","1", "-","-", "2");
-//        sql.insert("Item C","UnChecked","1", "-","-", "1");
-//        sql.insert("Item D","Checked","1", "-","-","1");
+       sql.insert("Item A","UnChecked", "2", "-","-", "1");
+       sql.insert("Item B","UnChecked","1", "-","-", "2");
+       sql.insert("Item C","UnChecked","1", "-","-", "1");
+       sql.insert("Item D","Checked","1", "-","-","1");
         sql.close();
 
 
