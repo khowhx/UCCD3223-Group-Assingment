@@ -258,8 +258,10 @@ public class SQLiteAdapter
         value.put(KEY_CONTENT_3, quantity.toString());
         Cursor cursor = sqLiteDatabase.rawQuery("select "+KEY_CONTENT_4+" from " +MYDATABASE_TABLE + " where id =" + id,null );
         cursor.moveToFirst();
-        Double total = Double.valueOf(cursor.getString(0)) * quantity;
-        value.put(KEY_CONTENT_5, String.format("%.2f", total));
+        if (cursor.getString(0) != "-") {
+            Double total = Double.valueOf(cursor.getString(0)) * quantity;
+            value.put(KEY_CONTENT_5, String.format("%.2f", total));
+        }
 
         sqLiteDatabase.update(MYDATABASE_TABLE, value, "id=?", new String[] {id});
         sqLiteDatabase.close();

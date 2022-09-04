@@ -2,20 +2,26 @@ package utar.edu.itemlist;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.content.ContentValues;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
+import android.icu.text.ListFormatter;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +32,12 @@ public class ItemList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_item_list);
+        setContentView(R.layout.activity_item_list);
 
-        LinearLayout ll = new LinearLayout(this);
+//        LinearLayout ll = new LinearLayout(this);
+        LinearLayout ll = (LinearLayout) findViewById(R.id.llView);
         ll.setOrientation(LinearLayout.VERTICAL);
+
         sql = new SQLiteAdapter(this);
         sql.openToWrite();
         if (sql.isEmpty())
@@ -40,6 +48,7 @@ public class ItemList extends AppCompatActivity {
             sql.insert("Item D","Checked","1", "4.00","1");
 
         }
+
 
         sql.close();
 
@@ -68,7 +77,7 @@ public class ItemList extends AppCompatActivity {
         List<Button> decreaseButtons = new ArrayList<Button>();
         List<Button> deleteButtons = new ArrayList<Button>();
 
-        String [] str = {"Finish", "Item", "", "Quantity","", "Price Each", "Total Price"};
+        String [] str = {"Finish", "\tItem", "", "Quantity","", "Price Each", "Total Price"};
         TableRow firstRow = new TableRow(this);
         for (int i = 0; i < str.length; i++)
         {
@@ -80,9 +89,6 @@ public class ItemList extends AppCompatActivity {
 
         for (int i = 0; i<itemName.size(); i++)
         {
-//            ContentValues cv = new ContentValues();
-//            cv.put("Column_1", itemName.get(i));
-//            cv.put("Checked_Status", checkedStatus.get(i));
             TableRow tableRow = new TableRow(this );
             CheckBox cb = new CheckBox(this);
 
@@ -97,7 +103,7 @@ public class ItemList extends AppCompatActivity {
 
             TextView tv1 = new TextView(this);
 
-            tv1.setText(itemName.get(i));
+            tv1.setText("\t"+itemName.get(i));
             if (cb.isChecked())
             {
                 tableRow.setBackgroundColor(Color.GREEN);
@@ -117,9 +123,16 @@ public class ItemList extends AppCompatActivity {
             TextView tv4 = new TextView(this);
             tv4.setText("RM" + totalPrice.get(i)+ "\t");
 
+
+
             Button increase = new Button(this);
             increase.setText("+");
+            increase.setWidth(10);
+
+
             Button decrease = new Button(this);
+
+
             decrease.setText("-");
             tableRow.addView(decrease);
             decreaseButtons.add(decrease);
@@ -134,7 +147,7 @@ public class ItemList extends AppCompatActivity {
             delete.setText("Delete");
             tableRow.addView(delete);
             deleteButtons.add(delete);
-
+//            tableRow.setLayoutParams();
             tableRows.add(tableRow);
 
 
@@ -225,7 +238,7 @@ public class ItemList extends AppCompatActivity {
 
 
         ll.addView(tableLayout);
-        setContentView(ll);
+//        setContentView(ll);
     }
     public void refresh()
     {
